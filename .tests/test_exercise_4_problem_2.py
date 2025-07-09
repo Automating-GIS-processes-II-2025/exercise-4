@@ -7,7 +7,16 @@ import pyproj
 
 class TestProblem2:
 
-    @points(1, "Problem 2: Did you read in the travel times of each shopping centre?")
+    @points(1, "Problem 2: Did you import the grid data and check if the CRS is correct?")
+    def test_problem_2_import_grid(self, problem2):
+        section_data, namespace = problem2
+        grid = namespace['grid']
+
+        assert isinstance(grid, gpd.GeoDataFrame)
+        assert grid.crs == pyproj.CRS.from_epsg(3067)
+        
+
+    @points(3, "Problem 2: Did you join the travel time data into the grid cells, using the correct column names?")
     def test_problem_2_centres(self, problem2):
         section_data, namespace = problem2
         grid = namespace['grid']
@@ -21,12 +30,11 @@ class TestProblem2:
             assert f"pt_r_t_{shopping_centre}" in grid.columns  
 
    
-    @points(1, "Problem 2: Some of the values for the nearest shopping centre seem to be incorrect.")    
+    @points(3, "Problem 2: Some of the values for the nearest shopping centre seem to be incorrect.")    
     def test_problem_2_closest_shopping_centre_value(self, problem2):
         section_data, namespace = problem2
         grid = namespace['grid']
 
-        # Assert that the value of "closest_shopping_centre" for the row with index 5785641 is "Myyrmanni"
         row1 = grid.loc[5785641]
         assert row1['dominant_shopping_centre'] == "Myyrmanni"
 
@@ -36,14 +44,14 @@ class TestProblem2:
         row3 = grid.loc[5785641]
         assert row3['dominant_shopping_centre'] == "Myyrmanni"
     
-    @points(1, "Problem 2: Did you save the plot as a PNG file?")
+    @points(1.5, "Problem 2: Did you save the plot as a PNG file?")
     def test_problem_2_plot_file_exists(self,problem2):
         section_data, namespace = problem2
 
         png_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'dominance_areas.png')
         assert os.path.exists(png_file)
 
-    @points(1, "Problem 2: Did you check that the PNG file is not empty?")
+    @points(1.5, "Problem 2: Did you check that the PNG file is not empty?")
     def test_problem_2_plot_file_not_empty(self,problem2):
 
         section_data, namespace = problem2
@@ -51,4 +59,4 @@ class TestProblem2:
         assert os.path.getsize(png_file) > 0
 
         
-    '''
+    
