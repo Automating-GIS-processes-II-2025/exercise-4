@@ -6,8 +6,6 @@ This week we will practice how to **join different data sets**,
 all places in the Helsinki region.
 
 
-- **Exercise 4 is due by Thursday, 28 November 2024, end of day**
-
 - Don’t forget to check out the [hints for this week’s
 exercise](https://autogis-site.readthedocs.io/en/latest/lessons/lesson-4/exercise-4.html#hints)
 
