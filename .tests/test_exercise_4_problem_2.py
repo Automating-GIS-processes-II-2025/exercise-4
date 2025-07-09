@@ -35,7 +35,7 @@ class TestProblem2:
 
         row3 = grid.loc[5785641]
         assert row3['dominant_shopping_centre'] == "Myyrmanni"
-    '''
+    
     @points(1, "Problem 2: Did you save the plot as a PNG file?")
     def test_problem_2_plot_file_exists(self,problem2):
         section_data, namespace = problem2
@@ -52,4 +52,4 @@ class TestProblem2:
         png_files = list(DATA_DIRECTORY.glob("*.png"))
         for png_file in png_files:
             assert png_file.stat().st_size > 0
-    '''
+    
