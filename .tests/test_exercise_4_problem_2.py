@@ -49,3 +49,8 @@ class TestProblem2:
         section_data, namespace = problem2
         png_file = os.path.join(os.path.dirname(__file__), '..', 'data', 'dominance_areas.png')
         assert os.path.getsize(png_file) > 0
+
+        png_files = list(DATA_DIRECTORY.glob("*.png"))
+        for png_file in png_files:
+            assert png_file.stat().st_size > 0
+    '''
